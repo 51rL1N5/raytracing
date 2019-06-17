@@ -2,9 +2,11 @@
 #define _LIGHT_H
 #include <iostream>
 #include <eigen3/Eigen/Dense>
-#include
+#include <../objects/objects.h>
+#include <../objects/ray.h>
+#define UNIT_VECTOR Eigen::Vector3f(1, 1, 1)
 
-using namespace std;
+//using namespace std;
 using namespace Eigen;
 
 Class Light
@@ -17,12 +19,11 @@ private:
     
 public:
     Light();
-    void setAmbientLightColor(Vector3f light_color = Vector3f(1, 1, 1));
-    void setLightColor(Vector3f light_color = Vector3f(1, 1, 1));
-    void setLightPosition(Vector3f light_position);
-    void setLightCoeff(float ka, float kd, float ks);
-    Vector3f calculateLight();
-    void intersect(Vector3f rayDir, Object object);
-    
+    void setAmbientLightColor(const Vector3f light_color = UNIT_VECTOR);
+    void setLightColor(const Vector3f light_color = UNIT_VECTOR);
+    void setLightPosition(const Vector3f light_position);
+    void setLightCoeffs(const float ka, const float kd, const float ks, const float nshiny);
+    Vector3f getReflectedRay(const Vector3f &ray, const Vector3f &normal);
+    Vector3f shade(const Vector3f rayDir, const Object *object);    
 }
 #endif
