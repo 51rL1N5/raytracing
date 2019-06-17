@@ -9,12 +9,12 @@ include_directories(EIGEN3_INCLUDE_DIR)
 add_subdirectory(objects)
 add_subdirectory(scene)
 add_subdirectory(light)
+add_subdirectory(camera)
 
 add_executable(raytracing main.cpp)
 
 find_library(RAYTRACING_OBJECTS NAMES raytracing_objects)
 find_library(RAYTRACING_SCENE NAMES raytracing_scene)
-find_library(RAYTRACING_LIGHT NAMES raytracing_light)
 
 target_link_libraries(
 
