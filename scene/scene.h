@@ -6,7 +6,7 @@
 using namespace std;
 using namespace Eigen;
 
-Class Scene
+class Scene
 {
 private:
     vector<Object> objects;

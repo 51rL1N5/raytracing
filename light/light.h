@@ -9,7 +9,7 @@
 //using namespace std;
 using namespace Eigen;
 
-Class Light
+class Light
 {
 private:
     float ka, ks, kd, fatt, nshiny;
