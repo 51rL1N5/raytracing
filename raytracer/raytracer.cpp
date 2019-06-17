@@ -20,11 +20,12 @@ void Raytracer::rayCasting()
             Eigen::Vector3f p1 = scene.getCam()->toWorldPoint(Eigen::Vector3f(i, j, 0.0),scene.getCam()->window.height);
             Eigen::Vector3f p2 = scene.getCam()->toWorldPoint(Eigen::Vector3f(i, j,  1.0),scene.getCam()->window.height);
 
-
+            std::cout << p1 << std::endl;
+            std::cout << p2 << std::endl;
 
             //Vector3f rayDir = (p2 - p1) / (p2 - p1).norm();
 
-            Ray ray(p1, p2);
+            Ray ray(p2, p1);
 
             trace(ray, 1);
         }
@@ -49,7 +50,7 @@ void Raytracer::getClosestIntersection(const Ray &ray,
 
     for(int i = 0; i < scene.objects.size(); i++)
     {
-        scene.objects.at(i)->intersect(ray, normal, intersectPoint);
+        scene.objects.at(i)->intersect(ray, intersectPoint, normal);
 
 
         if( intersectPoint.norm() != 0 && intersectPoint.norm() <  min_intersectionPoint.norm())
@@ -63,6 +64,8 @@ void Raytracer::getClosestIntersection(const Ray &ray,
 
     intersectPoint = min_intersectionPoint;
     normal = min_normal;
+
+    std::cout << normal << std::endl;
 }
 
 void Raytracer::reshape(int w, int h)
@@ -92,6 +95,7 @@ void Raytracer::trace(Ray ray, int n_reflections)
     int object_index = -1;
 
     getClosestIntersection(ray, normal, intersection, object_index);
+
 
     for (int i = 0; i < scene.light_sources.size(); i++)
     {

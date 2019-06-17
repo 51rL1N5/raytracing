@@ -53,10 +53,10 @@ Eigen::Vector3f Light::shade(Ray ray, Object * object)
         if(obj_norm < light_norm) return ka*Ia;
     }
 
-    fatt = 1/light_position.dot(intersection);
+    fatt = 1/(light_position - intersection).dot(light_position - intersection);
 
     //Obtem raio refletido
-    R = 2 * normal * (ray.Rd.dot(normal)) - ray.Rd;
+    R = 2 * normal * (L.Rd.dot(normal)) - L.Rd;
 
     //Calcula e retorna luz
     return ka*Ia + fatt*Il*(kd*normal.dot(L.Rd) + ks*std::pow(R.dot(O), nshiny));

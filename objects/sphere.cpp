@@ -27,7 +27,6 @@ void Sphere::intersect(const Ray ray, Eigen::Vector3f & intersection, Eigen::Vec
 
   float delta = B*B - 4*C*A;
 
-  std::cout << delta <<std:: endl;
 
   if (delta < 0)
   {
@@ -39,9 +38,12 @@ void Sphere::intersect(const Ray ray, Eigen::Vector3f & intersection, Eigen::Vec
     float t1 = (-B + sqrt(delta))/(2*A);
     float t2 = (-B - sqrt(delta))/(2*A);
 
+
+
     intersection = std::min(t1,t2)*ray.Rd + ray.Ro;
 
-    normal = intersection - center;
+    normal = (intersection - center);
+    normal.normalize();
   }
 
 }

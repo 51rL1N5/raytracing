@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 
    Sphere * esfera = new Sphere();
 
-   esfera->setSphere(Eigen::Vector3f(1,1,1), 2, 0.5, 0.3);
+   esfera->setSphere(Eigen::Vector3f(0,0,5), 2, 0.5, 0.3);
 
    scene.insertObject(esfera);
 

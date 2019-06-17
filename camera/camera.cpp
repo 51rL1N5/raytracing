@@ -49,7 +49,8 @@ Eigen::Vector3f Camera::toWorldPoint(Eigen::Vector3f windowPoint, int height)
     GLdouble mvmatrix[16], projmatrix[16];
     GLint realy;         /*  OpenGL y coordinate position  */
     GLdouble wx, wy, wz; /*  returned world x, y, z coords  */
-    gluLookAt(0, 0, -5, 0,0, 0, 0, 1, 0); //placed at (0,0,5), aim at (0,0,0), normal vector (0,1,0)
+//    gluLookAt(0, 0, -5, 0,0, 0, 0, 1, 0); //placed at (0,0,5), aim at (0,0,0), normal vector (0,1,0)
+    gluLookAt(pos(0), pos(1), pos(2), lookAt(0), lookAt(1), lookAt(2),normal(0), normal(1), normal(2));
     glGetIntegerv(GL_VIEWPORT, viewport);
     glGetDoublev(GL_MODELVIEW_MATRIX, mvmatrix);
     glGetDoublev(GL_PROJECTION_MATRIX, projmatrix);
