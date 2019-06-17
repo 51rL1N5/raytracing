@@ -1,5 +1,6 @@
 #ifndef _LIGHT_H
 #define _LIGHT_H
+
 #include <iostream>
 #include <eigen3/Eigen/Dense>
 #include "object.h"
@@ -24,4 +25,4 @@ public:
     Eigen::Vector3f shade(const Ray rayDir, Object *object);
 };
 
-#endif
+#endif // _LIGHT_H
