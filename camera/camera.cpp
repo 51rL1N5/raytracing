@@ -26,7 +26,7 @@ Window::Window(int width, int height, float x, float y, float znear, float zfar)
 
 Camera::Camera(Eigen::Vector3f pos, Eigen::Vector3f lookAt, Eigen::Vector3f normal, Window window_)
 {
-    cout<<"camera\n";
+    std::cout<<"camera\n";
     this->Camera::pos = pos;
     this->Camera::lookAt = lookAt;
     this->Camera::normal = normal;
@@ -55,7 +55,7 @@ Eigen::Vector3f Camera::toWorldPoint(Eigen::Vector3f windowPoint/*, int height*/
     glGetDoublev(GL_PROJECTION_MATRIX, projmatrix);
     /*  note viewport[3] is height of window in pixels  */
     //realy = viewport[3] - (GLint) y - 1;
-    realy = height - (GLint)windowPoint(1, 0) - 1;
+  //  realy = height - (GLint)windowPoint(1, 0) - 1;
 
 
     gluUnProject((GLdouble)windowPoint(0, 0), (GLdouble)realy, windowPoint(2, 0),

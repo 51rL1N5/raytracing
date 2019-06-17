@@ -10,27 +10,29 @@
 
 class Scene
 {
-private:
+public:
 
-    std::vector<Object*> objects;
-
-    std::vector<Light> light_sources;
-
-    Eigen::Vector3f bg_color;
+    static Eigen::Vector3f bg_color;
 
     static Camera * cam;
 
-public:
+
+
+    static std::vector<Object*> objects;
+
+    static std::vector<Light> light_sources;
+
     Scene();
 
-    Scene(Camera * cam, Eigen::Vector3f bg_color);
-    void setBgColor(Eigen::Vector3f bg_color = Eigen::Vector3f(0, 0, 0));
-    void setCam(Camera * cam);
-    
-    void insertObject(Object * object);
-    void insertLightSource(Light light);
+    Scene(Camera * cam_, Eigen::Vector3f bg_color_);
 
-    Camera * getCam();
+    static void setBgColor(Eigen::Vector3f bg_color_ = Eigen::Vector3f(0, 0, 0));
+    static void setCam(Camera * cam_);
+
+    static void insertObject(Object * object);
+    static void insertLightSource(Light light);
+
+    static Camera * getCam();
 
 };
 

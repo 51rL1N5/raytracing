@@ -1,26 +1,34 @@
 #include "scene.h"
 
+Camera * Scene::cam;
+
+Eigen::Vector3f Scene::bg_color;
+
+std::vector<Object*> Scene::objects;
+
+std::vector<Light> Scene::light_sources;
+
 
 Scene::Scene()
 {
   this->bg_color = Eigen::Vector3f(0,0,0);
 }
 
-Scene::Scene(Camera * cam, Eigen::Vector3f bg_color)
+Scene::Scene(Camera * cam_, Eigen::Vector3f bg_color_)
 {
-    this->bg_color = bg_color;
-    this->cam      = cam;
+    bg_color = bg_color_;
+    cam      = cam_;
 }
 
 
-void Scene::setBgColor(Eigen::Vector3f bg_color)
+void Scene::setBgColor(Eigen::Vector3f bg_color_)
 {
-    this->bg_color = bg_color;
+    bg_color = bg_color_;
 }
 
-void Scene::setCam(Camera * cam)
+void Scene::setCam(Camera * cam_)
 {
-  this->cam = cam;
+  cam = cam_;
 }
 
 void Scene::insertObject(Object * object)
