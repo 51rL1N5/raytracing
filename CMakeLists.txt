@@ -14,6 +14,7 @@ add_executable(raytracing main.cpp)
 
 find_library(RAYTRACING_OBJECTS NAMES raytracing_objects)
 find_library(RAYTRACING_SCENE NAMES raytracing_scene)
+find_library(RAYTRACING_LIGHT NAMES raytracing_light)
 
 target_link_libraries(
 

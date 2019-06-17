@@ -9,8 +9,8 @@ set(RAYTRACING_LIGHT_SRC light.cpp)
 
 set(RAYTRACING_LIGHT_INCLUDES light.h)
 
-add_library(raytracing_objects SHARED ${RAYTRACING_LIGHT_SRC})
+add_library(raytracing_light SHARED ${RAYTRACING_LIGHT_SRC})
 
-target_link_libraries(raytracing_objects)
+target_link_libraries(raytracing_light)
 
 install(FILES ${RAYTRACING_LIGHT_INCLUDES} DESTINATION include)

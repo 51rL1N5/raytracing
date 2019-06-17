@@ -9,8 +9,8 @@ set(RAYTRACING_SCENE_SRC scene.cpp)
 
 set(RAYTRACING_SCENE_INCLUDES scene.h)
 
-add_library(raytracing_objects SHARED ${RAYTRACING_SCENE_SRC})
+add_library(raytracing_scene SHARED ${RAYTRACING_SCENE_SRC})
 
-target_link_libraries(raytracing_objects)
+target_link_libraries(raytracing_scene)
 
 install(FILES ${RAYTRACING_SCENE_INCLUDES} DESTINATION include)
