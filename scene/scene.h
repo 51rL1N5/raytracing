@@ -7,20 +7,17 @@
 #include <vector>
 
 
-using namespace std;
-using namespace Eigen;
-
 class Scene
 {
 private:
-    vector<Object*> objects;
-    Vector3f bg_color;
+    std::vector<Object*> objects;
+    Eigen::Vector3f bg_color;
     float ka;
-    Vector3f Ia;
+    Eigen::Vector3f Ia;
 
 public:
     Scene();
-    void setBgColor(Vector3f bg_color = Vector3f(0, 0, 0));
+    void setBgColor(Eigen::Vector3f bg_color = Eigen::Vector3f(0, 0, 0));
     void insertObject(Object * object);
 };
 
