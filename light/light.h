@@ -22,7 +22,7 @@ public:
     void setAmbientLightColor(const Vector3f light_color = UNIT_VECTOR);
     void setLightColor(const Vector3f light_color = UNIT_VECTOR);
     void setLightPosition(const Vector3f light_position);
-    void setLightCoeffs(const float ka, const float kd, const float ks);
+    void setLightCoeffs(const float ka, const float kd, const float ks, const float nshiny);
     Vector3f getReflectedRay(const Vector3f &ray, const Vector3f &normal);
     Vector3f shade(const Vector3f rayDir, const Object *object);    
 }

@@ -23,7 +23,7 @@ void Light::setLightPosition(const Vector3f light_position)
     this->light_position = light_position;
 }
 
-void Light::setLightCoeff(const float ka, const float kd, const float ks, float nshiny)
+void Light::setLightCoeff(const float ka, const float kd, const float ks, const float nshiny)
 {
     this->ka = ka;
     this->kd = kd;
