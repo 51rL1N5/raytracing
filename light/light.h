@@ -21,7 +21,6 @@ public:
     void setLightColor(const Eigen::Vector3f light_color = UNIT_VECTOR);
     void setLightPosition(const Eigen::Vector3f light_position);
     void setLightCoeffs(const float ka, const float kd, const float ks, const float nshiny);
-    Eigen::Vector3f getReflectedRay(Eigen::Vector3f ray, Eigen::Vector3f normal);
     Eigen::Vector3f shade(const Ray rayDir, Object *object);
 };
 

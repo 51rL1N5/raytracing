@@ -16,6 +16,8 @@ public:
     Raytracer(Scene scene);
     void display();
     void reshape();
+    void trace(Ray ray, int n_reflections);
+    void reshape(int w, int h)
     void getClosestIntersection(const Ray &ray,
                                 Eigen::Vector3f &normal,
                                 Eigen::Vector3f &intersectPoint,

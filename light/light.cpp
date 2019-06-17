@@ -31,12 +31,6 @@ void Light::setLightCoeffs(const float ka, const float kd, const float ks, const
     this->nshiny = nshiny;
 }
 
-Eigen::Vector3f Light::getReflectedRay(Eigen::Vector3f ray, Eigen::Vector3f normal)
-{
-    //Rr = 2N(Ri*N)-Ri;
-    return 2 * normal * (ray.dot(normal)) - ray;
-}
-
 Eigen::Vector3f Light::shade(const Ray ray, Object * object)
 {
     Eigen::Vector3f normal, n, intersection, R, O, obj_intersection;
@@ -60,7 +54,7 @@ Eigen::Vector3f Light::shade(const Ray ray, Object * object)
     }
 
     //Obtem raio refletido
-    R = getReflectedRay(L.Rd, normal);
+    R = 2 * normal * (ray.dot(normal)) - ray;
 
     //Calcula e retorna luz
     return ka*Ia + fatt*Il*(kd*normal.dot(L.Rd) + ks*std::pow(R.dot(O), nshiny));

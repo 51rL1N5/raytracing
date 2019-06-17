@@ -26,23 +26,51 @@ void Raytracer::rayCasting(Scene scene)
 void Raytracer::getClosestIntersection(const Ray &ray,
                                        Eigen::Vector3f &normal,
                                        Eigen::Vector3f &intersectPoint,
-                                       int object)
+                                       int object_index)
 {
+    Eigen::Vector3f min_intersectionPoint(10000, 10000, 10000), min_normal;
     for(int i = 0; i < scene.objects.size(); i++)
     {
-        if(scene.objects.at(i)->intersect(ray, normal, ))
+        scene.objects.at(i)->intersect(ray, normal, intersectPoint)
+        if(intersectPoint.norm() <  min_intersectionPoint.norm)
+        {
+            min_intersectionPoint = intersectPoint;
+            min_normal = normal;
+            object_index = i;
+        }
     }
+    
+    intersectPoint = min_intersectionPoint;
+    normal = min_normal;
 }
+
+void Raytracer::reshape(int w, int h)
+{
+
+    cout << "reshape\n";
+    Eigen::Vector3f pos = scene.getCam()->pos;
+    Eigen::Vector3f lookAt = scene.getCam()->lookAt;
+    Eigen::Vector3f normal = scene.getCam()->normal;
+    //printf("ok");
+    glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(45.0, scene.getWindowWidth() / (float)scene.getWindowWidth(), 1.0, 100);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(pos(0, 0), pos(1, 0), pos(2, 0), lookAt(0, 0), lookAt(1, 0), lookAt(2, 0), normal(0, 0), normal(1, 0), normal(2, 0));
+}
+
 
 void Raytracer::trace(Ray ray, int n_reflections)
 {
     //percorre objetos
     Eigen::Vector3f normal, intersection;
-    for(int i = 0; i < scene.objects.size(); i++)
-    {
-        
-        if(scene.objects.at(i)->intersect(ray, normal, ))
-    }
+    Color cor(0, 0, 0);
+    int object_index;
+    getClosestIntersection(ray, normal, intersection, object);
+    cor = shade(ray, scene.objects.at(object_index));
+    scene.objects.at(i).drawPoints.push_back(std::pair<Eigen::Vector3f, Color>(intersection, cor));
 }
 
 void Raytracer::display()
