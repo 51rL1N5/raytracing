@@ -1,36 +1,39 @@
 #include "scene.h"
 
-Scene::Scene(int window_width, int window_height)
+
+Scene::Scene()
 {
-    objects = vector<Object>();
-    this->bg_color = bg_color;
-    this->Ia = Ia;
-    this->ka = ka;
-    this->window_width = window_width;
-    this->window_height = window_height;
+  this->bg_color = Eigen::Vector3f(0,0,0);
 }
 
-void Scene::setBgColor(Vector3f bg_color)
+Scene::Scene(Camera * cam, Eigen::Vector3f bg_color)
 {
     this->bg_color = bg_color;
+    this->cam      = cam;
 }
 
-void Scene::setBgColor(Vector3f bg_color = Vector3f(0, 0, 0))
+
+void Scene::setBgColor(Eigen::Vector3f bg_color)
 {
     this->bg_color = bg_color;
 }
 
-void Scene::insertObject(Object object)
+void Scene::setCam(Camera * cam)
+{
+  this->cam = cam;
+}
+
+void Scene::insertObject(Object * object)
 {
     objects.push_back(object);
 }
 
-int Scene::getWindowWidth()
+void Scene::insertLightSource(Light light)
 {
-    return this->window_width;
+  light_sources.push_back(light);
 }
 
-int Scene::getWindowHeight()
+Camera * Scene::getCam()
 {
-    return this->window_height;
+  return cam;
 }

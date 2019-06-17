@@ -25,11 +25,11 @@ public:
 
   std::vector<std::pair<Eigen::Vector3f,Color> > drawPoints;
 
-  Object()    // Default Constructor
-  {}
+  Object();    // Default Constructor
 
-  ~Object()   // Default Destructor
-  {}
+
+  ~Object();   // Default Destructor
+
 
   virtual void intersect(const Ray ray, Eigen::Vector3f & intersection, Eigen::Vector3f & normal)=0;
 

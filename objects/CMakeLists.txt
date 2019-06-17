@@ -5,7 +5,7 @@ message(STATUS ">>> Objects subdirectory")
 
 
 
-set(RAYTRACING_OBJECTS_SRC object.cpp ray.cpp shpere.cpp)
+set(RAYTRACING_OBJECTS_SRC object.cpp sphere.cpp)
 
 set(RAYTRACING_OBJECTS_INCLUDES object.h ray.h sphere.h color.h)
 
