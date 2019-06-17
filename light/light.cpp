@@ -34,7 +34,7 @@ void Light::setLightCoeff(const float ka, const float kd, const float ks, const 
 Vector3f Light::getReflectedRay(const Vector3f &ray, const Vector3f &normal)
 {
     //Rr = 2N(Ri*N)-Ri;
-    return 2 * normal * (normalized_ray.dot(normal)) - normalized_ray;
+    return 2 * normal * (ray.dot(normal)) - ray;
 }
 
 Vector3f Light::shade(const Ray ray, Object *object)
