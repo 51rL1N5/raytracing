@@ -6,7 +6,7 @@ Eigen::Vector3f Scene::bg_color;
 
 std::vector<Object*> Scene::objects;
 
-std::vector<Light> Scene::light_sources;
+std::vector<Light*> Scene::light_sources;
 
 
 Scene::Scene()
@@ -36,7 +36,7 @@ void Scene::insertObject(Object * object)
     objects.push_back(object);
 }
 
-void Scene::insertLightSource(Light light)
+void Scene::insertLightSource(Light * light)
 {
   light_sources.push_back(light);
 }

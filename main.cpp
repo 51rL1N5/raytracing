@@ -4,6 +4,8 @@
 #include "camera.h"
 #include "scene.h"
 #include "raytracer.h"
+#include "sphere.h"
+#include "light.h"
 
 using namespace Eigen;
 
@@ -20,8 +22,24 @@ int main(int argc, char** argv)
    Camera cam(Vector3f(0, 0, -5), Vector3f(0, 0, 0), Vector3f(0, 1, 0), window);
    Scene scene;
 
+
    scene.setCam(&cam);
    scene.setBgColor(Vector3f(0, 0, 0));
+
+   Sphere * esfera = new Sphere();
+
+   esfera->setSphere(Eigen::Vector3f(1,1,1), 1, 0.3, 0.3);
+
+   scene.insertObject(esfera);
+
+   Light * light = new Light();
+
+   light->setLightPosition(Vector3f(0,20,0));
+   light->setLightColor(Vector3f(1,0,0));
+   light->setAmbientLightColor(Vector3f(0.1,0.1,0.1));
+   light->setLightCoeffs(0.2, 0.5, 0.3, 1);
+
+   scene.insertLightSource(light);
 
    Raytracer raytracer(scene);
 

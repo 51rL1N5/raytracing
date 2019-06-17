@@ -20,7 +20,7 @@ public:
 
   Sphere(); // Default Constructor
 
-  void setSphere(Eigen::Vector3f center, float radius, float kd=0.3, float ks=0.3);
+  void setSphere(Eigen::Vector3f center_, float radius_, float kd=0.3, float ks=0.3);
 
   void intersect(const Ray ray, Eigen::Vector3f & intersection, Eigen::Vector3f & normal);
 

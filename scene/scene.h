@@ -16,11 +16,9 @@ public:
 
     static Camera * cam;
 
-
-
     static std::vector<Object*> objects;
 
-    static std::vector<Light> light_sources;
+    static std::vector<Light *> light_sources;
 
     Scene();
 
@@ -30,7 +28,7 @@ public:
     static void setCam(Camera * cam_);
 
     static void insertObject(Object * object);
-    static void insertLightSource(Light light);
+    static void insertLightSource(Light * light);
 
     static Camera * getCam();
 

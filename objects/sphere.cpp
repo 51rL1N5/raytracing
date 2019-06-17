@@ -1,17 +1,18 @@
 #include "sphere.h"
 #include <cmath>
-
+#include <iostream>
 #define NULL_VECTOR Eigen::Vector3f(0,0,0)
 
 Sphere::Sphere()
-{}
+{ }
 
-void Sphere::setSphere(Eigen::Vector3f center, float radius, float kd, float ks)
+void Sphere::setSphere(Eigen::Vector3f center_, float radius_, float kd, float ks)
 {
-  this->center          = center;
-  this->radius          = radius;
-  this->material.kd     = kd;
-  this->material.ks     = ks;
+
+  center          = center_;
+  radius          = radius_;
+  material.kd     = kd;
+  material.ks     = ks;
 }
 
 void Sphere::intersect(const Ray ray, Eigen::Vector3f & intersection, Eigen::Vector3f & normal)

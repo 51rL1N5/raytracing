@@ -34,7 +34,7 @@ void Light::setLightCoeffs(const float ka, const float kd, const float ks, const
 Eigen::Vector3f Light::shade(Ray ray, Object * object)
 {
     Eigen::Vector3f normal, n, intersection, R, O, obj_intersection;
-
+    
     object->intersect(ray, normal, intersection);
 
     //Obtem direção da luz

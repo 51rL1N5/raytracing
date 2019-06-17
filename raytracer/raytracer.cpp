@@ -74,9 +74,13 @@ void Raytracer::trace(Ray ray, int n_reflections)
     int object_index = -1;
 
     getClosestIntersection(ray, normal, intersection, object_index);
+    std::cout<<"birl\n";
 
+    std::cout << scene.light_sources.size() << std::endl;
     for (int i = 0; i < scene.light_sources.size(); i++)
-      cor = scene.light_sources.at(i).shade(ray, scene.objects.at(object_index));
+    {
+      cor = scene.light_sources.at(i)->shade(ray, scene.objects.at(object_index));
+    }
 
 
     if (object_index != -1)
