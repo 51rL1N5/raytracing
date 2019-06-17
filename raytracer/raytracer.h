@@ -7,19 +7,18 @@
 
 #include <eigen3/Eigen/Dense>
 
-using namespace Eigen;
-
 class Raytracer
 {
 private:
     Scene scene;
-    Light light;
 
 public:
-    void rayCasting();
-
+    Raytracer(Scene scene);
     void display();
-
-    void reshape(int w, int h);
+    void reshape();
+    void getClosestIntersection(const Ray &ray,
+                                Eigen::Vector3f &normal,
+                                Eigen::Vector3f &intersectPoint,
+                                int object_index = -1);
 };
 #endif
