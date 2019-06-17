@@ -1,20 +1,27 @@
-#ifndef _RAYTRACING_H
-#define _RAYTRACING_H
+#ifndef _RAYTRACER_H
+#define _RAYTRACER_H
 #include <iostream>
 #include <../scene/scene.h>
 #include <../light/light.h>
 #include <../objects/objects.h>
-#include<eigen3/Eingen/Dense>
+#include <../objects/ray.h>
+#include <eigen3/Eingen/Dense>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
 
-using namespace Eigen;
-
-class Raytracing
+class Raytracer
 {
 private:
-    Scene scene;
-    Light light;    
+    Scene scene;  
 
 public:
-    Raytracing();
+    Raytracer(Scene scene);
+    void display();
+    void reshape();
+    void getClosestIntersection(const Ray &ray,
+                                Eigen::Vector3f &normal,
+                                Eigen::Vector3f &intersectPoint,
+                                int object_index = -1);
 };
 #endif

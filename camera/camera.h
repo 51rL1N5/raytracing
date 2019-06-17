@@ -34,7 +34,7 @@ public:
 
 
     Camera(Eigen::Vector3f pos, Eigen::Vector3f lookAt, Eigen::Vector3f normal,Window window_);
-    Eigen::Vector3f toWorldPoint(Eigen::Vector3f windowPoint, int height);
+    Eigen::Vector3f toWorldPoint(Eigen::Vector3f windowPoint/*, int height*/);
 
 
 };
