@@ -11,6 +11,9 @@ std::vector<Light*> Scene::light_sources;
 
 Scene::Scene()
 {
+  objects.clear();
+  light_sources.clear();
+
   this->bg_color = Eigen::Vector3f(0,0,0);
 }
 

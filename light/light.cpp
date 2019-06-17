@@ -34,7 +34,7 @@ void Light::setLightCoeffs(const float ka, const float kd, const float ks, const
 Eigen::Vector3f Light::shade(Ray ray, Object * object)
 {
     Eigen::Vector3f normal, n, intersection, R, O, obj_intersection;
-    
+
     object->intersect(ray, normal, intersection);
 
     //Obtem direção da luz
@@ -52,6 +52,8 @@ Eigen::Vector3f Light::shade(Ray ray, Object * object)
         float light_norm = (light_position-intersection).norm();
         if(obj_norm < light_norm) return ka*Ia;
     }
+
+    fatt = 1/light_position.dot(intersection);
 
     //Obtem raio refletido
     R = 2 * normal * (ray.Rd.dot(normal)) - ray.Rd;

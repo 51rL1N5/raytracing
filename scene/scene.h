@@ -20,6 +20,7 @@ public:
 
     static std::vector<Light *> light_sources;
 
+
     Scene();
 
     Scene(Camera * cam_, Eigen::Vector3f bg_color_);

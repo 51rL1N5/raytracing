@@ -1,5 +1,9 @@
 #include "raytracer.h"
 
+Scene Raytracer::scene;
+
+Raytracer::Raytracer()
+{}
 Raytracer::Raytracer(Scene scene)
 {this->scene = scene;}
 
@@ -13,8 +17,10 @@ void Raytracer::rayCasting()
         for (int j = 0; j < scene.getCam()->window.height; j++)
         {
 
-            Eigen::Vector3f p1 = scene.getCam()->toWorldPoint(Eigen::Vector3f(i, j, 0.0));
-            Eigen::Vector3f p2 = scene.getCam()->toWorldPoint(Eigen::Vector3f(i, j, 1.0));
+            Eigen::Vector3f p1 = scene.getCam()->toWorldPoint(Eigen::Vector3f(i, j, 0.0),scene.getCam()->window.height);
+            Eigen::Vector3f p2 = scene.getCam()->toWorldPoint(Eigen::Vector3f(i, j,  1.0),scene.getCam()->window.height);
+
+
 
             //Vector3f rayDir = (p2 - p1) / (p2 - p1).norm();
 
@@ -26,20 +32,32 @@ void Raytracer::rayCasting()
 
 }
 
+void Raytracer::setScene(Scene & scene)
+{
+  Raytracer::scene = scene;
+}
+
+
 void Raytracer::getClosestIntersection(const Ray &ray,
                                        Eigen::Vector3f &normal,
                                        Eigen::Vector3f &intersectPoint,
-                                       int object_index)
+                                       int& object_index)
 {
+
     Eigen::Vector3f min_intersectionPoint(10000, 10000, 10000), min_normal;
+
+
     for(int i = 0; i < scene.objects.size(); i++)
     {
         scene.objects.at(i)->intersect(ray, normal, intersectPoint);
-        if(intersectPoint.norm() <  min_intersectionPoint.norm())
+
+
+        if( intersectPoint.norm() != 0 && intersectPoint.norm() <  min_intersectionPoint.norm())
         {
             min_intersectionPoint = intersectPoint;
             min_normal = normal;
             object_index = i;
+
         }
     }
 
@@ -74,17 +92,15 @@ void Raytracer::trace(Ray ray, int n_reflections)
     int object_index = -1;
 
     getClosestIntersection(ray, normal, intersection, object_index);
-    std::cout<<"birl\n";
 
-    std::cout << scene.light_sources.size() << std::endl;
     for (int i = 0; i < scene.light_sources.size(); i++)
     {
+      if (object_index == -1)
+        break;
       cor = scene.light_sources.at(i)->shade(ray, scene.objects.at(object_index));
+      scene.objects.at(object_index)->drawPoints.push_back(std::pair<Eigen::Vector3f, Color>(intersection, cor));
     }
 
-
-    if (object_index != -1)
-      scene.objects.at(object_index)->drawPoints.push_back(std::pair<Eigen::Vector3f, Color>(intersection, cor));
 }
 
 void Raytracer::display()

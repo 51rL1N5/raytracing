@@ -1,6 +1,8 @@
 project(raytracing)
 cmake_minimum_required(VERSION 2.8)
 
+set (CMAKE_CXX_STANDARD 11)
+
 find_package(OpenGL)
 find_package(GLUT)
 find_package (Eigen3 REQUIRED)

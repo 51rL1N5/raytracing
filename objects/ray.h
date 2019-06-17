@@ -13,7 +13,6 @@ struct Ray
   {
     Ro = Ro_;
     Rd = Rd_ - Ro_;
-
     Rd.normalize();
   }
 };
