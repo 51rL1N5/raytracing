@@ -4,13 +4,12 @@ project(raytracing)
 message(STATUS ">>> scene subdirectory")
 
 
-
 set(RAYTRACING_SCENE_SRC scene.cpp)
 
 set(RAYTRACING_SCENE_INCLUDES scene.h)
 
-add_library(raytracing_scene SHARED ${RAYTRACING_SCENE_SRC})
+add_library(raytracing_scene SHARED ${RAYTRACING_SCENE_SRC} ${RAYTRACING_OBJECTS} ${OPENGL_GL_LIBRARY} ${GLUT_LIBRARY})
 
-target_link_libraries(raytracing_scene)
+target_link_libraries(raytracing_scene raytracing_objects ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
 
 install(FILES ${RAYTRACING_SCENE_INCLUDES} DESTINATION include)
