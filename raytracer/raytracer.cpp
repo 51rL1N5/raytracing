@@ -1,4 +1,4 @@
-#include "raytracing.h"
+#include "raytracer.h"
 
 void Raytracer::rayCasting(Scene scene)
 {
@@ -20,6 +20,7 @@ void Raytracer::rayCasting(Scene scene)
             trace(ray, 1);
         }
     }
+    
 }
 
 void Raytracer::getClosestIntersection(const Ray &ray,

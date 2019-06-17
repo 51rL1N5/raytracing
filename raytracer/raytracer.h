@@ -1,19 +1,16 @@
 #ifndef _RAYTRACER_H
 #define _RAYTRACER_H
 #include <iostream>
-#include <../scene/scene.h>
-#include <../light/light.h>
-#include <../objects/objects.h>
-#include <../objects/ray.h>
-#include <eigen3/Eingen/Dense>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <GL/glut.h>
+#include "scene.h"
+#include "light.h"
+#include "object.h"
+
+#include <eigen3/Eigen/Dense>
 
 class Raytracer
 {
 private:
-    Scene scene;  
+    Scene scene;
 
 public:
     Raytracer(Scene scene);
