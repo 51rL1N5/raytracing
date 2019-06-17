@@ -7,24 +7,31 @@
 #include <GL/glut.h>
 #include <vector>
 #include "color.h"
+#include "ray.h"
+
+struct Material
+{
+  float kd;
+  float ks;
+};
 
 class Object
 {
 private:
 
-  struct Material
-  {
-    float kd;
-    float ks;
-  };
+public:
+
+  Material material;
 
   std::vector<std::pair<Eigen::Vector3f,Color> > drawPoints;
 
-public:
+  Object()    // Default Constructor
+  {}
 
-  Object(); // Default Constructor
+  ~Object()   // Default Destructor
+  {}
 
-
+  virtual void intersect(const Ray ray, Eigen::Vector3f & intersection, Eigen::Vector3f & normal)=0;
 
 };
 
