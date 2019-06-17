@@ -1,8 +1,8 @@
-#include "raytracing.h"
+#include "raytracer.h"
 
-void Scene::rayCasting()
+void Raytracer::rayCasting()
 {
-
+/*
     cout << "ray casting\n";
     for (int i = 0; i < cam->window.width; i++)
     {
@@ -20,11 +20,12 @@ void Scene::rayCasting()
             trace(p1, rayDir, 1);
         }
     }
+    */
 }
 
-void Scene::reshape(int w, int h)
+void Raytracer::reshape(int w, int h)
 {
-
+/*
     cout << "reshape\n";
     Eigen::Vector3f pos = (*cam).pos;
     Eigen::Vector3f lookAt = (*cam).lookAt;
@@ -37,9 +38,10 @@ void Scene::reshape(int w, int h)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(pos(0, 0), pos(1, 0), pos(2, 0), lookAt(0, 0), lookAt(1, 0), lookAt(2, 0), normal(0, 0), normal(1, 0), normal(2, 0));
+    */
 }
 
-void Scene::display()
+void Raytracer::display()
 {/*
     cout<<"\n frontal\n" <<shapes[1].getFace(0).getNormalVector()<<endl<<endl;
     cout<<"\n left\n" <<shapes[1].getFace(1).getNormalVector()<<endl<<endl;
@@ -48,7 +50,7 @@ void Scene::display()
     cout<<"\n right\n" <<shapes[1].getFace(4).getNormalVector()<<endl<<endl;
     cout<<"\n top\n" <<shapes[1].getFace(5).getNormalVector()<<endl<<endl;
 */
-
+/*
 glEnable(GL_DEPTH_TEST);
 
     cout << "display\n";
@@ -103,4 +105,5 @@ glEnable(GL_DEPTH_TEST);
     glEnd();
 
     glFlush();
+    */
 }
