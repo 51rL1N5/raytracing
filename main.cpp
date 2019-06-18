@@ -6,6 +6,8 @@
 #include "raytracer.h"
 #include "sphere.h"
 #include "light.h"
+#include "triangle.h"
+#include "cube.h"
 
 using namespace Eigen;
 
@@ -26,15 +28,30 @@ int main(int argc, char** argv)
    scene.setCam(&cam);
    scene.setBgColor(Vector3f(0, 0, 0));
 
+
    Sphere * esfera = new Sphere();
 
    esfera->setSphere(Eigen::Vector3f(0,0,20), 4, 0.5, 0.3);
 
    scene.insertObject(esfera);
 
+/*
+   Triangle * triangle = new Triangle();
+
+   triangle->setTriangle(Vector3f(4,-1,40), Vector3f(-4,-1,40), Vector3f(0,4,40));
+
+   scene.insertObject(triangle);
+*/
+/*
+   Cube * cube = new Cube();
+
+   cube->setCube(Vector3f(0,0,20), 4);
+
+   scene.insertObject(cube)
+*/
    Light * light = new Light();
 
-   light->setLightPosition(Vector3f(0,0,30));
+   light->setLightPosition(Vector3f(10,10,30));
    light->setLightColor(Vector3f(1,1,1));
    light->setAmbientLightColor(Vector3f(0,1.0,1.0));
    light->setLightCoeffs(0.2, 0.5, 0.3, 50);
