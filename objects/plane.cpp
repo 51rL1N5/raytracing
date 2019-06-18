@@ -3,11 +3,14 @@
 Plane::Plane()
 {}
 
-void Plane::setPlane(Eigen::Vector3f normal, float distance_)
+void Plane::setPlane(Eigen::Vector3f normal, float distance_, float ks, float kd)
 {
   distance = distance_;
 
   normal_ = normal;
+
+  material.ks = ks;
+  material.kd = kd;
 
   normal_.normalize();
 }

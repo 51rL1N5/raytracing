@@ -14,9 +14,9 @@ public:
 
   Cube();
 
-  Cube(Eigen::Vector3f left_corner, float size);
+  Cube(Eigen::Vector3f left_corner, float size, float ks, float kd);
 
-  void setCube(Eigen::Vector3f left_corner, float size);
+  void setCube(Eigen::Vector3f left_corner, float size, float ks, float kd);
 
   void intersect(Ray ray, Eigen::Vector3f & intersection, Eigen::Vector3f & normal);
 

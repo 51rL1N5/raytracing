@@ -12,7 +12,7 @@ public:
 
   Plane();
 
-  void setPlane(Eigen::Vector3f normal, float distance_);
+  void setPlane(Eigen::Vector3f normal, float distance_, float ks, float kd);
 
   void intersect(Ray ray, Eigen::Vector3f & intersection, Eigen::Vector3f & normal);
 };

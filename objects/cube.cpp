@@ -3,59 +3,12 @@
 Cube::Cube()
 {}
 
-Cube::Cube(Eigen::Vector3f left_corner, float size)
+Cube::Cube(Eigen::Vector3f left_corner, float size, float ks, float kd)
 {
   this->size = size;
 
-
-  Eigen::Vector3f p[8];
-
-  p[0] = left_corner;
-
-  p[1] = p[0] + Eigen::Vector3f(0, size,0);
-
-  p[2] = p[1] + Eigen::Vector3f(-size, 0, 0);
-
-  p[3] = p[0] + Eigen::Vector3f(-size,0,0);
-
-  p[4] = p[0] + Eigen::Vector3f(0,0,size);
-
-  p[5] = p[4] + Eigen::Vector3f(0,size,0);
-
-  p[6] = p[5] + Eigen::Vector3f(-size, 0,0);
-
-  p[7] = p[4] + Eigen::Vector3f(-size, 0, 0);
-
-  // Bottom side
-  triangles.push_back(new Triangle(p[0], p[1], p[2]));
-  triangles.push_back(new Triangle(p[0], p[3], p[2]));
-
-  // Left side
-  triangles.push_back(new Triangle(p[0], p[4], p[3]));
-  triangles.push_back(new Triangle(p[7], p[4], p[3]));
-
-  // Front side
-  triangles.push_back(new Triangle(p[0], p[1], p[4]));
-  triangles.push_back(new Triangle(p[5], p[1], p[4]));
-
-  // Right Side
-  triangles.push_back(new Triangle(p[5], p[1], p[2]));
-  triangles.push_back(new Triangle(p[5], p[6], p[2]));
-
-  // Top Side
-  triangles.push_back(new Triangle(p[4], p[7], p[6]));
-  triangles.push_back(new Triangle(p[4], p[5], p[6]));
-
-  // Back side
-  triangles.push_back(new Triangle(p[2], p[6], p[7]));
-  triangles.push_back(new Triangle(p[2], p[3], p[7]));
-
-}
-
-void Cube::setCube(Eigen::Vector3f left_corner, float size)
-{
-  this->size = size;
-
+  material.ks = ks;
+  material.kd = kd;
 
   std::vector<Eigen::Vector3f > p(8,Eigen::Vector3f(0,0,0));
 
@@ -76,28 +29,79 @@ void Cube::setCube(Eigen::Vector3f left_corner, float size)
   p[7] = p[4] + Eigen::Vector3f(-size, 0, 0);
 
   // Bottom side
-  triangles.push_back(new Triangle(p[0], p[1], p[2]));
-  triangles.push_back(new Triangle(p[0], p[3], p[2]));
+  triangles.push_back(new Triangle(p[0], p[1], p[2], ks, kd));
+  triangles.push_back(new Triangle(p[0], p[3], p[2], ks, kd));
 
   // Left side
-  triangles.push_back(new Triangle(p[0], p[4], p[3]));
-  triangles.push_back(new Triangle(p[7], p[4], p[3]));
+  triangles.push_back(new Triangle(p[0], p[4], p[3], ks, kd));
+  triangles.push_back(new Triangle(p[7], p[4], p[3], ks, kd));
 
   // Front side
-  triangles.push_back(new Triangle(p[0], p[1], p[4]));
-  triangles.push_back(new Triangle(p[5], p[1], p[4]));
+  triangles.push_back(new Triangle(p[0], p[1], p[4], ks, kd));
+  triangles.push_back(new Triangle(p[5], p[1], p[4], ks, kd));
 
   // Right Side
-  triangles.push_back(new Triangle(p[5], p[1], p[2]));
-  triangles.push_back(new Triangle(p[5], p[6], p[2]));
+  triangles.push_back(new Triangle(p[5], p[1], p[2], ks, kd));
+  triangles.push_back(new Triangle(p[5], p[6], p[2], ks, kd));
 
   // Top Side
-  triangles.push_back(new Triangle(p[4], p[7], p[6]));
-  triangles.push_back(new Triangle(p[4], p[5], p[6]));
+  triangles.push_back(new Triangle(p[4], p[7], p[6], ks, kd));
+  triangles.push_back(new Triangle(p[4], p[5], p[6], ks, kd));
 
   // Back side
-  triangles.push_back(new Triangle(p[2], p[6], p[7]));
-  triangles.push_back(new Triangle(p[2], p[3], p[7]));
+  triangles.push_back(new Triangle(p[2], p[6], p[7], ks, kd));
+  triangles.push_back(new Triangle(p[2], p[3], p[7], ks, kd));
+
+}
+
+void Cube::setCube(Eigen::Vector3f left_corner, float size, float ks, float kd)
+{
+  this->size = size;
+
+  material.ks = ks;
+  material.kd = kd;
+
+  std::vector<Eigen::Vector3f > p(8,Eigen::Vector3f(0,0,0));
+
+  p[0] = left_corner;
+
+  p[1] = p[0] + Eigen::Vector3f(0, size,0);
+
+  p[2] = p[1] + Eigen::Vector3f(-size, 0, 0);
+
+  p[3] = p[0] + Eigen::Vector3f(-size,0,0);
+
+  p[4] = p[0] + Eigen::Vector3f(0,0,size);
+
+  p[5] = p[4] + Eigen::Vector3f(0,size,0);
+
+  p[6] = p[5] + Eigen::Vector3f(-size, 0,0);
+
+  p[7] = p[4] + Eigen::Vector3f(-size, 0, 0);
+
+  // Bottom side
+  triangles.push_back(new Triangle(p[0], p[1], p[2], ks, kd));
+  triangles.push_back(new Triangle(p[0], p[3], p[2], ks, kd));
+
+  // Left side
+  triangles.push_back(new Triangle(p[0], p[4], p[3], ks, kd));
+  triangles.push_back(new Triangle(p[7], p[4], p[3], ks, kd));
+
+  // Front side
+  triangles.push_back(new Triangle(p[0], p[1], p[4], ks, kd));
+  triangles.push_back(new Triangle(p[5], p[1], p[4], ks, kd));
+
+  // Right Side
+  triangles.push_back(new Triangle(p[5], p[1], p[2], ks, kd));
+  triangles.push_back(new Triangle(p[5], p[6], p[2], ks, kd));
+
+  // Top Side
+  triangles.push_back(new Triangle(p[4], p[7], p[6], ks, kd));
+  triangles.push_back(new Triangle(p[4], p[5], p[6], ks, kd));
+
+  // Back side
+  triangles.push_back(new Triangle(p[2], p[6], p[7], ks, kd));
+  triangles.push_back(new Triangle(p[2], p[3], p[7], ks, kd));
 }
 
 void Cube::intersect(Ray ray, Eigen::Vector3f & intersection, Eigen::Vector3f & normal)

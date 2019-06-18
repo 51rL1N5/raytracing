@@ -7,18 +7,24 @@
 Triangle::Triangle()
 {}
 
-Triangle::Triangle(Eigen::Vector3f v0, Eigen::Vector3f v1, Eigen::Vector3f v2)
+Triangle::Triangle(Eigen::Vector3f v0, Eigen::Vector3f v1, Eigen::Vector3f v2, float ks, float kd)
 {
   vertex[0] = v0;
   vertex[1] = v1;
   vertex[2] = v2;
+
+  material.ks = ks;
+  material.kd = kd;
 }
 
-void Triangle::setTriangle(Eigen::Vector3f v0, Eigen::Vector3f v1, Eigen::Vector3f v2)
+void Triangle::setTriangle(Eigen::Vector3f v0, Eigen::Vector3f v1, Eigen::Vector3f v2, float ks, float kd)
 {
   vertex[0] = v0;
   vertex[1] = v1;
   vertex[2] = v2;
+
+  material.ks = ks;
+  material.kd = kd;
 }
 
 void Triangle::intersect(Ray ray, Eigen::Vector3f & intersection, Eigen::Vector3f & normal)

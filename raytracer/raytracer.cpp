@@ -28,11 +28,11 @@ void Raytracer::rayCasting()
             //Vector3f rayDir = (p2 - p1) / (p2 - p1).norm();
 
             Ray ray(p2, p1);
-            
-            
+
+
             //std::cout << "ray:" << std::endl;
             //std::cout << ray.Rd << std::endl;
-            
+
             trace(ray, 1, false);
         }
     }
@@ -84,7 +84,7 @@ void Raytracer::reshape(int w, int h)
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(45.0, scene.getCam()->window.width / (float)scene.getCam()->window.height, 1, 100);
+    gluPerspective(90.0, (float)scene.getCam()->window.width / (float)scene.getCam()->window.height, 0.01, 10000.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(pos(0, 0), pos(1, 0), pos(2, 0), lookAt(0, 0), lookAt(1, 0), lookAt(2, 0), normal(0, 0), normal(1, 0), normal(2, 0));
@@ -97,18 +97,20 @@ Eigen::Vector3f Raytracer::trace(Ray ray, int n_reflections, bool reflection)
     Eigen::Vector3f normal, intersection;
     Eigen::Vector3f cor(0, 0, 0), cor_reflection(0, 0, 0);
 
+
+
     int object_index = -1;
 
     getClosestIntersection(ray, normal, intersection, object_index);
-        
-    //Calcula contribuição das luzes    
+
+    //Calcula contribuição das luzes
     for (int i = 0; i < scene.light_sources.size(); i++)
     {
         if (object_index == -1)
             return Eigen::Vector3f(0, 0, 0);
         cor = scene.light_sources.at(i)->shade(ray, scene.objects.at(object_index));
     }
-    
+
     if(n_reflections != 0)
     {
         int obj_index = -1;
@@ -116,30 +118,35 @@ Eigen::Vector3f Raytracer::trace(Ray ray, int n_reflections, bool reflection)
         Eigen::Vector3f observer = ray.Ro-intersection;
         observer.normalize();
         Eigen::Vector3f reflected = 2*normal*(normal.dot(observer)) - observer;
-        
+
         Ray reflected_ray(intersection, Eigen::Vector3f(0, 0, 0));
         reflected_ray.Rd = reflected;
-        
+
         getClosestIntersection(reflected_ray, normal_obj, obj_intersection, obj_index);
-        
+
         if(obj_index != -1)
         {
             cor_reflection = trace(reflected_ray, n_reflections-1, true);
+
+            if(isnanf(cor_reflection.norm()))
+              cor_reflection = Eigen::Vector3f(0,0,0);
+
         }
     }
     else if(reflection)
     {
         return cor;
     }
-    
+
     Eigen::Vector3f final_color = (cor*cor.norm() + cor_reflection*cor_reflection.norm())/(cor.norm() + cor_reflection.norm());
+
     //std::cout << final_color(0) << ", " << final_color(1) << ", " << final_color(2) << std::endl;
     if(!reflection)
     {
         //std::cout << "obj: " << object_index << std::endl;
         scene.objects.at(object_index)->drawPoints.push_back(std::pair<Eigen::Vector3f, Color>(intersection, Color(final_color)));
     }
-    return cor;
+    return final_color;
 }
 
 void Raytracer::display()
