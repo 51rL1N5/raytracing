@@ -57,7 +57,8 @@ Eigen::Vector3f Light::shade(Ray ray, Object * object)
     //Verifica se há um objeto entre ponto de interseção e luz
     object->intersect(L, obj_intersection, n);
 
-    if(obj_intersection != Eigen::Vector3f(0, 0, 0))
+    float l =  (obj_intersection - intersection).norm();
+    if(obj_intersection != Eigen::Vector3f(0, 0, 0) && l > 0.1)
     {
         float obj_norm = (obj_intersection-intersection).norm();
         float light_norm = (light_position-intersection).norm();
