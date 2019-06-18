@@ -11,13 +11,13 @@ void Raytracer::rayCasting()
 {
 
     std::cout << "ray casting\n";
-    //for (int i = 0; i < scene.getCam()->window.width; i++)
-    //{
-    int i = 320;
-    int j = 240;
+    for (int i = 0; i < scene.getCam()->window.width; i++)
+    {
+    //int i = 320;
+    //int j = 500;
 
-    //    for (int j = 0; j < scene.getCam()->window.height; j++)
-    //    {
+        for (int j = 0; j < scene.getCam()->window.height; j++)
+        {
 
             //Eigen::Vector3f p1 = scene.getCam()->toWorldPoint(Eigen::Vector3f(i, j, 0.0),scene.getCam()->window.height);
             Eigen::Vector3f p2 = scene.getCam()->toWorldPoint(Eigen::Vector3f(i, j,  1.0),scene.getCam()->window.height);
@@ -30,12 +30,12 @@ void Raytracer::rayCasting()
             Ray ray(p2, p1);
             
             
-            std::cout << "ray:" << std::endl;
-            std::cout << ray.Rd << std::endl;
+            //std::cout << "ray:" << std::endl;
+            //std::cout << ray.Rd << std::endl;
             
             trace(ray, 1);
-      //  }
-   // }
+        }
+    }
 
 }
 

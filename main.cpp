@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 
    Sphere * esfera = new Sphere();
 
-   esfera->setSphere(Eigen::Vector3f(0,0,5), 2, 0.5, 0.3);
+   esfera->setSphere(Eigen::Vector3f(0,0,20), 4, 0.5, 0.3);
 
    scene.insertObject(esfera);
 
@@ -36,8 +36,8 @@ int main(int argc, char** argv)
 
    light->setLightPosition(Vector3f(0,1,0));
    light->setLightColor(Vector3f(1,1,1));
-   light->setAmbientLightColor(Vector3f(1,0.1,0.1));
-   light->setLightCoeffs(0.2, 0.5, 0.3, 0.5);
+   light->setAmbientLightColor(Vector3f(0,1.0,1.0));
+   light->setLightCoeffs(0.2, 0.5, 0.3, 50);
 
    scene.insertLightSource(light);
 

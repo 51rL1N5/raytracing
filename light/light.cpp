@@ -38,19 +38,21 @@ Eigen::Vector3f Light::shade(Ray ray, Object * object)
     object->intersect(ray, intersection, normal);
     
     
-    std::cout << "intersection" << std::endl;
-    std::cout << intersection << std::endl << std::endl;
+    //std::cout << "intersection" << std::endl;
+    //std::cout << intersection << std::endl << std::endl;
 
     //Obtem direção da luz
     Ray L(intersection, light_position);
-    std::cout << "L" << std::endl;
-    std::cout << L.Rd << std::endl << std::endl;
+    //std::cout << "Light position" << std::endl;
+    //std::cout << light_position << std::endl << std::endl;
+    //std::cout << "L" << std::endl;
+    //std::cout << L.Rd << std::endl << std::endl;
 
     //Obtem raio do observador
     O = ray.Ro - intersection;
     O.normalize();
-    std::cout << "O" << std::endl;
-    std::cout << O << std::endl << std::endl;
+    //std::cout << "O" << std::endl;
+    //std::cout << O << std::endl << std::endl;
 
     //Verifica se há um objeto entre ponto de interseção e luz
     object->intersect(L, obj_intersection, n);
@@ -66,13 +68,13 @@ Eigen::Vector3f Light::shade(Ray ray, Object * object)
 
     //Obtem raio refletido
     R = 2 * normal * (L.Rd.dot(normal)) - L.Rd;
-    std::cout << "R" << std::endl;
-    std::cout << R << std::endl << std::endl;
+    //std::cout << "R" << std::endl;
+    //std::cout << R << std::endl << std::endl;
 
     //Calcula e retorna luz
     Eigen::Vector3f cor =  ka*Ia + fatt*Il*(kd*normal.dot(L.Rd) + ks*std::pow(R.dot(O), nshiny));
-    std::cout << "cor" << std::endl;
-    std::cout << cor << std::endl << std::endl;
+    //std::cout << "cor am" << std::endl;
+    //std::cout << cor << std::endl << std::endl;
     return cor;
 
 

@@ -38,12 +38,24 @@ void Sphere::intersect(const Ray ray, Eigen::Vector3f & intersection, Eigen::Vec
     float t1 = (-B + sqrt(delta))/(2*A);
     float t2 = (-B - sqrt(delta))/(2*A);
 
+    if (t1 > 0 && t2 > 0)
+      intersection = std::min(t1,t2)*ray.Rd + ray.Ro;
+    else if ((t1 > 0 && t2 < 0) || (t1 < 0 && t2>0))
+      intersection = std::max(t1,t2)*ray.Rd + ray.Ro;
+    else
+      intersection = NULL_VECTOR;
 
 
-    intersection = std::min(t1,t2)*ray.Rd + ray.Ro;
+    if(intersection == NULL_VECTOR)
+    {
+      normal = NULL_VECTOR;
+    }
+    else
+    {
+      normal = (intersection - center);
+      normal.normalize();
+    }
 
-    normal = (intersection - center);
-    normal.normalize();
   }
 
 }
