@@ -56,10 +56,10 @@ Eigen::Vector3f Camera::toWorldPoint(Eigen::Vector3f windowPoint, int height)
     glGetDoublev(GL_PROJECTION_MATRIX, projmatrix);
     /*  note viewport[3] is height of window in pixels  */
     //realy = viewport[3] - (GLint) y - 1;
-    realy = height - (GLint)windowPoint(1, 0) - 1;
+    realy = viewport[3] - (GLint)windowPoint(1) - 1;
 
 
-    gluUnProject((GLdouble)windowPoint(0, 0), (GLdouble)realy, windowPoint(2, 0),
+    gluUnProject((GLdouble)windowPoint(0), (GLdouble)realy, windowPoint(2, 0),
                  mvmatrix, projmatrix, viewport, &wx, &wy, &wz);
 
     return Eigen::Vector3f(wx, wy, wz);

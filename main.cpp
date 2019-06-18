@@ -34,10 +34,10 @@ int main(int argc, char** argv)
 
    Light * light = new Light();
 
-   light->setLightPosition(Vector3f(0,0,0));
+   light->setLightPosition(Vector3f(0,1,0));
    light->setLightColor(Vector3f(1,1,1));
    light->setAmbientLightColor(Vector3f(1,0.1,0.1));
-   light->setLightCoeffs(0.2, 0.5, 0.3, 5);
+   light->setLightCoeffs(0.2, 0.5, 0.3, 0.5);
 
    scene.insertLightSource(light);
 
