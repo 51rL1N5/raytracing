@@ -58,7 +58,7 @@ Eigen::Vector3f Light::shade(Ray ray, Object * object)
     object->intersect(L, obj_intersection, n);
 
     float l =  (obj_intersection - intersection).norm();
-    if(obj_intersection != Eigen::Vector3f(0, 0, 0) && l > 0.1)
+    if(obj_intersection != Eigen::Vector3f(0, 0, 0) && l > 0.1 )
     {
         float obj_norm = (obj_intersection-intersection).norm();
         float light_norm = (light_position-intersection).norm();
@@ -73,9 +73,23 @@ Eigen::Vector3f Light::shade(Ray ray, Object * object)
     //std::cout << R << std::endl << std::endl;
 
     //Calcula e retorna luz
-    Eigen::Vector3f cor =  ka*Ia + fatt*Il*(kd*normal.dot(L.Rd) + ks*std::pow(R.dot(O), nshiny));
-    //std::cout << "cor am" << std::endl;
-    //std::cout << cor << std::endl << std::endl;
+    
+    float _is  = ks*std::pow(R.dot(O), nshiny);
+    float _id = kd*normal.dot(L.Rd);
+    if(_id < 0) _id=0;
+    Eigen::Vector3f _ia = ka*Ia;
+    Eigen::Vector3f cor = _ia+Il*(_is+_id);
+    //Eigen::Vector3f cor =  ka*Ia + fatt*Il*(kd*normal.dot(L.Rd) + ks*std::pow(R.dot(O), nshiny));
+    /*if(cor.norm() > 0.1)
+    {
+    
+        std::cout << "normal" << std::endl;
+        std::cout << normal << std::endl << std::endl;
+        std::cout << "obj_intersection" << std::endl;
+        std::cout << obj_intersection << std::endl << std::endl;
+        std::cout << "intersection" << std::endl;
+        std::cout << intersection << std::endl << std::endl;
+    }*/
     return cor;
 
 

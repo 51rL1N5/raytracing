@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC   -shared -Wl,-soname,libraytracing_light.so -o libraytracing_light.so CMakeFiles/raytracing_light.dir/light.cpp.o -Wl,-rpath,/home/matheus/Documentos/CG/rt/raytracing/build/objects ../objects/libraytracing_objects.so 

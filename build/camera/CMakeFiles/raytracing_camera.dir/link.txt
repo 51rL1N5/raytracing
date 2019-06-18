@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC   -shared -Wl,-soname,libraytracing_camera.so -o libraytracing_camera.so CMakeFiles/raytracing_camera.dir/camera.cpp.o -Wl,-rpath,/home/matheus/Documentos/CG/rt/raytracing/build/objects ../objects/libraytracing_objects.so 

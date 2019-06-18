@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/matheus/Documentos/CG/rt/raytracing/camera/camera.cpp
+camera.h
+/home/matheus/Documentos/CG/rt/raytracing/camera/camera.h
+stdio.h
+-
+iostream
+-
+cmath
+-
+
+/home/matheus/Documentos/CG/rt/raytracing/camera/camera.h
+eigen3/Eigen/Dense
+-
+GL/gl.h
+-
+GL/glu.h
+-
+GL/glut.h
+-
+vector
+-
+utility
+-
+

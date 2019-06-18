@@ -34,7 +34,7 @@ int main(int argc, char** argv)
 
    Light * light = new Light();
 
-   light->setLightPosition(Vector3f(0,10,10));
+   light->setLightPosition(Vector3f(0,0,30));
    light->setLightColor(Vector3f(1,1,1));
    light->setAmbientLightColor(Vector3f(0,1.0,1.0));
    light->setLightCoeffs(0.2, 0.5, 0.3, 50);
