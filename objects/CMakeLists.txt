@@ -5,9 +5,9 @@ message(STATUS ">>> Objects subdirectory")
 
 
 
-set(RAYTRACING_OBJECTS_SRC object.cpp sphere.cpp triangle.cpp cube.cpp)
+set(RAYTRACING_OBJECTS_SRC object.cpp sphere.cpp triangle.cpp cube.cpp plane.cpp)
 
-set(RAYTRACING_OBJECTS_INCLUDES object.h ray.h sphere.h color.h triangle.h cube.h)
+set(RAYTRACING_OBJECTS_INCLUDES object.h ray.h sphere.h color.h triangle.h cube.h plane.h)
 
 add_library(raytracing_objects SHARED ${RAYTRACING_OBJECTS_SRC})
 

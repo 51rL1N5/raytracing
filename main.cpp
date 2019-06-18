@@ -8,6 +8,7 @@
 #include "light.h"
 #include "triangle.h"
 #include "cube.h"
+#include "plane.h"
 
 using namespace Eigen;
 
@@ -27,7 +28,6 @@ int main(int argc, char** argv)
 
    scene.setCam(&cam);
    scene.setBgColor(Vector3f(0, 0, 0));
-
 
    Sphere * esfera = new Sphere();
 
@@ -49,6 +49,17 @@ int main(int argc, char** argv)
 
    scene.insertObject(cube)
 */
+
+
+   Plane * plane = new Plane();
+
+
+   plane->setPlane(Vector3f(0,0,-1), 30);
+
+
+   scene.insertObject(plane);
+
+
    Light * light = new Light();
 
    light->setLightPosition(Vector3f(10,10,30));
