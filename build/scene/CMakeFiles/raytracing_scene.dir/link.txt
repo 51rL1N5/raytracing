@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC   -shared -Wl,-soname,libraytracing_scene.so -o libraytracing_scene.so CMakeFiles/raytracing_scene.dir/scene.cpp.o -Wl,-rpath,/home/matheus/Documentos/CG/rt/raytracing/build/camera:/home/matheus/Documentos/CG/rt/raytracing/build/objects ../camera/libraytracing_camera.so -lGL -lGLU -lglut -lXi ../objects/libraytracing_objects.so 
