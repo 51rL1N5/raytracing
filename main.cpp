@@ -30,10 +30,13 @@ int main(int argc, char** argv)
 
 
    Sphere * esfera = new Sphere();
+   Sphere * esfera2 = new Sphere();
 
-   esfera->setSphere(Eigen::Vector3f(0,0,20), 4, 0.5, 0.3);
+   esfera->setSphere(Eigen::Vector3f(0,6,40), 4, 0.5, 0.3);
+    esfera2->setSphere(Eigen::Vector3f(0,-6,40), 4, 0.5, 0.3);
 
    scene.insertObject(esfera);
+   scene.insertObject(esfera2);
 
 /*
    Triangle * triangle = new Triangle();
@@ -51,7 +54,7 @@ int main(int argc, char** argv)
 */
    Light * light = new Light();
 
-   light->setLightPosition(Vector3f(10,10,30));
+   light->setLightPosition(Vector3f(0,10,20));
    light->setLightColor(Vector3f(1,1,1));
    light->setAmbientLightColor(Vector3f(0,1.0,1.0));
    light->setLightCoeffs(0.2, 0.5, 0.3, 50);

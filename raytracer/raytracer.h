@@ -3,6 +3,7 @@
 #include <iostream>
 #include "scene.h"
 #include "light.h"
+#include "color.h"
 #include "object.h"
 
 #include <eigen3/Eigen/Dense>
@@ -21,7 +22,7 @@ public:
     void setScene(Scene & scene);
     static void rayCasting();
     static void display();
-    static void trace(Ray ray, int n_reflections);
+    static Eigen::Vector3f trace(Ray ray, int n_reflections, bool reflection);
     static void reshape(int w, int h);
     static void getClosestIntersection(const Ray &ray,
                                 Eigen::Vector3f &normal,
